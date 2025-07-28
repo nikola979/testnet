@@ -1,15 +1,14 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from utils.connection import check_connection
 from utils.packet_loss import check_packet_loss
 from utils.web_service import check_web_service
 from utils.port_scan import check_open_port
-from flask import render_template
+
+app = Flask(__name__)  # ← ovo mora biti pre svih @app.route dekoratora
 
 @app.route("/")
 def home():
     return render_template("index.html")
-
-app = Flask(__name__)
 
 @app.route("/connection")
 def connection():
